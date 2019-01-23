@@ -1,0 +1,9 @@
+version: '3.5'
+
+services:
+  age:
+    image: 'nodejs-starterkit'
+    expose:
+      - '3010'
+    ports:
+      - '8888:3010'

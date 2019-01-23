@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app_name_here
+spec:
+  selector:
+    matchLabels:
+      app: app_name_here
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app_name_here
+    spec:
+      containers:
+      - name: app_name_here
+        image: 127.0.0.1:5000/app_name_here
+        command: ["pm2-dev", "/var/svr/dev-options.json"]
+        ports:
+        - containerPort: 3010
+        env:
+        - name: YOU_IN_K8S
+          value: "TRUE"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3010
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 3010
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
+# command: ["pm2-dev", "/var/svr/dev-options.json"]
+# command: ["node", "/var/svr/index.js"]

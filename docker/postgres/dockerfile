@@ -1,0 +1,9 @@
+
+FROM postgres
+MAINTAINER Nick Kenny
+
+RUN mkdir -p /dbdata/postgres
+
+ENV POSTGRES_USER admin
+ENV POSTGRES_PASSWORD starterkit2019!
+ENV PGDATA /dbdata/postgres

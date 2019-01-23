@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-starterkit
+spec:
+  selector:
+    matchLabels:
+      app: postgres-starterkit
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres-starterkit
+    spec:
+      containers:
+      - name: postgres-starterkit
+        image: 127.0.0.1:30089/postgres-starterkit
+        ports:
+        - containerPort: 5432

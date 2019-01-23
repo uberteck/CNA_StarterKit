@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-starterkit
+  labels:
+    app: postgres-starterkit
+spec:
+  type: NodePort
+  ports:
+  - port: 5432
+    nodePort: 30542
+    name: pgport
+    protocol: TCP
+  selector:
+    app: postgres-starterkit
